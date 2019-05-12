@@ -2,15 +2,15 @@
     import { connect } from 'react-redux';
 
     import {
-        INCREMENT_COUNTER,
-        DECREMENT_COUNTER,
-        INCREMENT_COUNTER_ASYNC,
-        DECREMENT_COUNTER_ASYNC
+        INCREMENT,
+        DECREMENT,
+        INCREMENT_ASYNC,
+        DECREMENT_ASYNC,
     } from "./ducks";
 
     class Counter extends Component {
         render() {
-            console.log('props', this.props);
+            console.log('[render called] props', this.props);
             return (
                 <div
                     style={{
@@ -22,16 +22,16 @@
                         flexDirection: 'column'
                     }}>
                     <div>
-                        <button onClick={() => this.props.increment()}>
+                        <button onClick={() => this.props.increment(10)}>
                             Increment
                         </button>
-                        <button onClick={() => this.props.decrement()}>
+                        <button onClick={() => this.props.decrement(10)}>
                             Decrement
                         </button>
-                        <button onClick={() => this.props.incrementAsync()}>
+                        <button onClick={() => this.props.incrementAsync(10)}>
                             Increment after 1 sec
                         </button>
-                        <button onClick={() => this.props.derementAsync()}>
+                        <button onClick={() => this.props.derementAsync(10)}>
                             Decrement after 1 sec
                         </button>
                     </div>
@@ -47,10 +47,11 @@
 
     const mapDispatchToProps = (dispatch) => {
         return {
-            increment: () => dispatch({ type: INCREMENT_COUNTER }),
-            decrement: () => dispatch({ type: DECREMENT_COUNTER }),
-            incrementAsync: () => dispatch({ type: INCREMENT_COUNTER_ASYNC }),
-            derementAsync: () => dispatch({ type: DECREMENT_COUNTER_ASYNC }),
+            // increment: (payload) => dispatch({ type: INCREMENT_COUNTER, payload }),
+            increment: (payload) => dispatch(INCREMENT(payload)),
+            decrement: (payload) => dispatch(DECREMENT(payload)),
+            incrementAsync: (payload) => dispatch(INCREMENT_ASYNC(payload)),
+            derementAsync: (payload) => dispatch(DECREMENT_ASYNC(payload))
         }
     }
 
